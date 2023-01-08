@@ -12,27 +12,27 @@ string temp = "";
 
 for (int i = 0; i < lengthOfUserString; i++)
 {
-    int cur_count = 1;
-    string cur_temp = "";
+    int inside_count = 1;
+    string inside_temp = "";
     //cur_temp += userInput[i];
     for (int j = i + 1; j < lengthOfUserString; j++)
     {
         //
         //cur_temp += userInput[i];
-        if (cur_temp.Contains(userInput[j]) || userInput[i] == userInput[j])
+        if (inside_temp.Contains(userInput[j]) || userInput[i] == userInput[j])
         {
             break;
         }
         else
         {
-            cur_count += 1;
-            cur_temp += userInput[j];
+            inside_count += 1;
+            inside_temp += userInput[j];
         }
     }
-    if (cur_count > count)
+    if (inside_count > count)
     {
-        count = cur_count;
-        temp = userInput[i] + cur_temp;
+        count = inside_count;
+        temp = userInput[i] + inside_temp;
     }
 }
 
