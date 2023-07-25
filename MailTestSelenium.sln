@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 25.0.1706.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailTestSelenium", "MailTestSelenium\MailTestSelenium.csproj", "{CB9FA368-F47E-420B-AC0F-95561BC1F5DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CB9FA368-F47E-420B-AC0F-95561BC1F5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB9FA368-F47E-420B-AC0F-95561BC1F5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB9FA368-F47E-420B-AC0F-95561BC1F5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB9FA368-F47E-420B-AC0F-95561BC1F5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94ADDCA0-C521-43BC-BBB1-52DB501481D9}
+	EndGlobalSection
+EndGlobal
