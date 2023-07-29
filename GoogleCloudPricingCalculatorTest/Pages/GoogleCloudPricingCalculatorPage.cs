@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GoogleCloudPricingCalculatorTest.Service;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -51,7 +51,6 @@ namespace GoogleCloudPricingCalculatorTest.Pages
 
         public void FillInFormWithDefinedOptions()
         {
-            //ComputeEngineButton.Click();
             NumberOfInstancesField.Click();
             NumberOfInstancesField.SendKeys("4");
             SeriesField.Click();
@@ -71,14 +70,15 @@ namespace GoogleCloudPricingCalculatorTest.Pages
             CommittedUsageField.Click();
             CommittedUsage1YearOption.Click();
             AddToEstimateButton.Click();
+            Logger.logger.Information("The form was filled in");
         }
 
         public void SendTotalEstimateCostToEmail(string receiverEmailAddress)
         {
             EmailEstimateButton.Click();
             EmailEstimateEmailField.SendKeys(receiverEmailAddress);
-            Thread.Sleep(1500); // for demo purposes only
             EmailEstimateSendEmailButton.Click();
+            Logger.logger.Information($"Total estimate cost was sent to the email: {receiverEmailAddress}");
         }
 
         public string GetValueOfTotalEstimatedCost()
@@ -91,6 +91,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         public void OpenPage()
         {
             driver.Navigate().GoToUrl(webPageUrl);
+            Logger.logger.Information("Gmail Cloud Pricing (calculator) page opened");
         }
 
         public void GoToFrameOfCalculator()

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using GoogleCloudPricingCalculatorTest.Service;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -24,7 +24,6 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         {
             SearchButton.Click();
             SearchButton.SendKeys(textToBeSearched);
-            Thread.Sleep(1500); // for demo purposes only
             SearchButton.SendKeys(Keys.Enter);
         }
 
@@ -37,6 +36,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         public void OpenPage()
         {
             driver.Navigate().GoToUrl(webPageUrl);
+            Logger.logger.Information("Gmail Cloud page opened");
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-namespace GoogleCloudPricingCalculatorTest.Model
+﻿namespace GoogleCloudPricingCalculatorTest.Model
 {
     public class User
     {
@@ -11,13 +10,8 @@ namespace GoogleCloudPricingCalculatorTest.Model
             this.username = username;
             this.password = password;
         }
-
-
         public string GetUsername() { return username; }
         public string GetPassword() { return password; }
-
-
-
     }
 }
 

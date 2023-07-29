@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
 namespace GoogleCloudPricingCalculatorTest.WebDriverManager
@@ -14,7 +13,6 @@ namespace GoogleCloudPricingCalculatorTest.WebDriverManager
             {
                 driver = new ChromeDriver();
             }
-
             return driver;
         }
 

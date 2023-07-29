@@ -1,6 +1,5 @@
-﻿using System;
-using GoogleCloudPricingCalculatorTest.Model;
-using log4net;
+﻿using GoogleCloudPricingCalculatorTest.Model;
+using GoogleCloudPricingCalculatorTest.Service;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -9,8 +8,6 @@ namespace GoogleCloudPricingCalculatorTest.Pages
 {
     public class GoogleLoginPage
     {
-        private static readonly ILog logger = LogManager.GetLogger(typeof(GoogleLoginPage));
-
         private const string webPageUrl = "https://mail.google.com/";
         private IWebDriver driver;
         private WebDriverWait wait;
@@ -31,7 +28,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         private IWebElement PasswordNextButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='passwordNext']/descendant::span[text()='Next']")));
 
         // --- GMAIL INBOX PAGE ELEMENTS --- //
-        private IWebElement AccountIconButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//img[@class='gb_k gbii']")));
+        private IWebElement AccountIconButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//img[@class='gb_n gbii']")));
         private IWebElement LoggedInUserName => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[@class='q6rarf']/descendant::div[@class='Wdz6e']")));
 
         public void Login(User user)
@@ -40,7 +37,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
             EmailInputNextButton.Click();
             PasswordInput.SendKeys(user.GetPassword());
             PasswordNextButton.Click();
-            logger.Info("The user logged in successfully");
+            Logger.logger.Information("The user logged in successfully");
         }
 
         public string GetLoggedInUserName()
@@ -53,7 +50,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         public void OpenPage()
         {
             driver.Navigate().GoToUrl(webPageUrl);
-            logger.Info("Gmail login page opened");
+            Logger.logger.Information("Gmail login page opened");
         }
     }
 }

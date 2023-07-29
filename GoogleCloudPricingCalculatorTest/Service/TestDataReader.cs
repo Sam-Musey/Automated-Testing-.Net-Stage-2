@@ -1,7 +1,4 @@
-﻿using System;
-using System.IO;
-using Microsoft.Extensions.Configuration;
-using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
+﻿using Microsoft.Extensions.Configuration;
 
 namespace GoogleCloudPricingCalculatorTest.Service
 {
@@ -11,12 +8,9 @@ namespace GoogleCloudPricingCalculatorTest.Service
 
         public static void SetEnvironment(string environment)
         {
-            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "TestData", $"appsettings.{environment}.json"); // CORRECT ONE
-            //string filePath = "../../../TestData/" + $"appsettings.{environment}.json"; // Why does this not work :(((
-            
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "..", "TestData", $"appsettings.{environment}.json");
             var builder = new ConfigurationBuilder()
                 .AddJsonFile(filePath, optional: true, reloadOnChange: true);
-
             Configuration = builder.Build();
         }
 

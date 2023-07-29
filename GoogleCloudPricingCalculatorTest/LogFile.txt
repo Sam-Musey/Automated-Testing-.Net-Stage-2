@@ -1,1 +1,0 @@
-[2023-07-23 14:32:05,806] [GoogleCloudPricingCalculatorTest.Pages.GoogleLoginPage] -INFO- Gmail login page opened

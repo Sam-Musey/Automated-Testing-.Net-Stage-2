@@ -1,5 +1,4 @@
-﻿using System;
-using GoogleCloudPricingCalculatorTest.Model;
+﻿using GoogleCloudPricingCalculatorTest.Model;
 
 namespace GoogleCloudPricingCalculatorTest.Service
 {
