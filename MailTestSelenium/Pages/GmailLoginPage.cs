@@ -1,5 +1,4 @@
-﻿using System;
-using MailTestSelenium.Pages;
+﻿using MailTestSelenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
@@ -56,7 +55,6 @@ namespace MailTestSelenium
                 IWebElement wrongLoginMessage = WrongLoginError;
                 return true;
             }
-
             catch (NoSuchElementException)
             {
                 return false;

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Xml.Linq;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace MailTestSelenium.Pages
 {
@@ -18,14 +15,7 @@ namespace MailTestSelenium.Pages
             wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60)); // Outlook is very slow, so I set 60 seconds
         }
 
-        //private IWebElement NewEmailButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[text()='New email']")));
-        //private IWebElement InboxScrollBar => wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("div[class='customScrollBar jEpCF']")));
-
-        public void OpenParticularEmail(string subjectOfEmail)
-        {
-            wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//span[text()='{subjectOfEmail}'][1]"))).Click();
-
-        }
+        public void OpenParticularEmail(string subjectOfEmail) => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//span[text()='{subjectOfEmail}'][1]"))).Click();
 
         public void CheckIfEmailContainsParticularTextOrNot(string subjectOfEmail, string secretText)
         {
@@ -43,7 +33,6 @@ namespace MailTestSelenium.Pages
                 $"Here is your new alias:\n\n" +
                 $"---> {newAlias} <---\n\n" +
                 $"Best regards, Alice.");
-            System.Threading.Thread.Sleep(2000); // for demo purposes only
 
             // This try-catch block tries two locators of "send" button
             // If a browser window is small, it should be first locator
@@ -56,7 +45,6 @@ namespace MailTestSelenium.Pages
             {
                 driver.FindElement(By.XPath("//span[text()='Send']")).Click();
             }
-            System.Threading.Thread.Sleep(1500); // for demo purposes only
         }
     }
 }

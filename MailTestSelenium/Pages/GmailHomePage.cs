@@ -1,5 +1,4 @@
-﻿using System;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -9,12 +8,11 @@ namespace MailTestSelenium.Pages
     {
         private IWebDriver driver;
         private WebDriverWait wait;
-        private string newAlias;
 
         public GmailHomePage(IWebDriver driver)
         {
             this.driver = driver;
-            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(30));
+            wait = new WebDriverWait(driver, TimeSpan.FromSeconds(15));
         }
 
         private IWebElement LoggedInUser => wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[text()='Primary']")));
@@ -32,7 +30,7 @@ namespace MailTestSelenium.Pages
         private IWebElement AliasSaveChangesButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='bttn_sub']")));
         private IWebElement GmailButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='gb']/descendant::div[@class='gb_Hc gb_8d'][2]")));
         private IWebElement SentSection => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//div[@class='aio UKr6le']/descendant::a[text()='Sent']")));
-
+        private IWebElement RefreshButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[@class='G-Ni J-J5-Ji']")));
         public string ChangeGmailAlias(string newAlias)
         {
             SettingsButton.Click();
@@ -41,11 +39,8 @@ namespace MailTestSelenium.Pages
             EditInfoInAliasSectionButton.Click();
             driver.SwitchTo().Window(driver.WindowHandles[1]); // switch to a new window
             wait.Until(ExpectedConditions.ElementToBeClickable(By.CssSelector("input[id='cfn']")));
-            System.Threading.Thread.Sleep(1000); // for demo purposes only
             AliasTextField.Clear();
-            System.Threading.Thread.Sleep(1500); // for demo purposes only
             AliasTextField.SendKeys(newAlias);
-            System.Threading.Thread.Sleep(1500); // for demo purposes only
             AliasSaveChangesButton.Click();
             driver.SwitchTo().Window(driver.WindowHandles[0]); // switch back to a parent window
             wait.Until(ExpectedConditions.ElementIsVisible(By.XPath($"//*[@id=':1']/descendant::div[text()='{newAlias} <bob.webdriver.tester@gmail.com>']")));
@@ -68,22 +63,19 @@ namespace MailTestSelenium.Pages
             RecipientsField.SendKeys("Alice_webdriver-tester@outlook.com");
             SubjectField.SendKeys("Very important email for you, Alice!");
 
-
             EmailBodyField.SendKeys("No, I'm just kidding :)\n" +
                 "Don't get too excited, this is just a test letter!\n" +
                 "And also don't try to make sense of the next part, it's kind of a secret text that will help identify this letter." +
                 "\n\n ---> " + randomPartOfEmail + " <--- " +
                 "\n\nBest regards,\nBob.");
-            System.Threading.Thread.Sleep(2500); // for demo purposes only
             SendEmailButton.Click();
-            System.Threading.Thread.Sleep(1500); // for demo purposes only
             return randomPartOfEmail;
         }
 
         public bool IsParticularEmailWasSent(string subjectOfSentEmail)
         {
-
             SentSection.Click();
+            RefreshButton.Click();
             try
             {
                 IWebElement emailSent = wait.Until(ExpectedConditions.ElementExists(By.XPath($"//div[@class='ae4 UI nH oy8Mbf']/descendant::span[contains(text(), '{subjectOfSentEmail}')]")));
@@ -102,7 +94,6 @@ namespace MailTestSelenium.Pages
                 IWebElement loggedInUser = LoggedInUser;
                 return true;
             }
-
             catch (NoSuchElementException)
             {
                 return false;

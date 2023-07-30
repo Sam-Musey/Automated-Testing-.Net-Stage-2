@@ -1,10 +1,6 @@
 ﻿using MailTestSelenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Safari;
-using OpenQA.Selenium.Support.UI;
-using SeleniumExtras.PageObjects;
-using SeleniumExtras.WaitHelpers;
 
 namespace MailTestSelenium;
 
@@ -14,7 +10,7 @@ public class GmailLoginTests
     IWebDriver driver = new ChromeDriver();
 
     [TestMethod]
-    public void Test1GmailLogInWithEmptyLoginThrowsError()
+    public void GmailLogInWithEmptyLoginThrowsError()
     {
         GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
         driver.Navigate().GoToUrl("https://mail.google.com/");
@@ -22,11 +18,10 @@ public class GmailLoginTests
 
         bool result = gmailLoginPage.IsWrongLoginErrorDisplayed();
         Assert.IsTrue(result);
-        System.Threading.Thread.Sleep(1000); // for demo purposes only
     }
 
     [TestMethod]
-    public void Test2GmailLogInWithEmptyPasswordThrowsError()
+    public void GmailLogInWithEmptyPasswordThrowsError()
     {
         GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
         driver.Navigate().GoToUrl("https://mail.google.com/");
@@ -36,11 +31,10 @@ public class GmailLoginTests
 
         bool result = gmailLoginPage.IsWrongPasswordErrorDisplayed();
         Assert.IsTrue(result);
-        System.Threading.Thread.Sleep(1000); // for demo purposes only
     }
 
     [TestMethod]
-    public void Test3GmailLogInWithWrongLoginThrowsError()
+    public void GmailLogInWithWrongLoginThrowsError()
     {
         GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
         driver.Navigate().GoToUrl("https://mail.google.com/");
@@ -49,11 +43,10 @@ public class GmailLoginTests
 
         bool result = gmailLoginPage.IsWrongLoginErrorDisplayed();
         Assert.IsTrue(result);
-        System.Threading.Thread.Sleep(1000); // for demo purposes only
     }
 
     [TestMethod]
-    public void Test4GmailLogInWithWrongPasswordThrowsError()
+    public void GmailLogInWithWrongPasswordThrowsError()
     {
         GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
         driver.Navigate().GoToUrl("https://mail.google.com/");
@@ -64,11 +57,10 @@ public class GmailLoginTests
 
         bool result = gmailLoginPage.IsWrongPasswordErrorDisplayed();
         Assert.IsTrue(result);
-        System.Threading.Thread.Sleep(1000); // for demo purposes only
     }
 
     [TestMethod]
-    public void Test5GmailLogInWithCorrectCredentialsSucceeded()
+    public void GmailLogInWithCorrectCredentialsSucceeded()
     {
         GmailLoginPage gmailLoginPage = new GmailLoginPage(driver);
         driver.Navigate().GoToUrl("https://mail.google.com/");
@@ -86,5 +78,4 @@ public class GmailLoginTests
     {
         driver.Quit();
     }
-
 }
