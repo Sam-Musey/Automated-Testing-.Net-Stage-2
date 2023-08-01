@@ -1,0 +1,18 @@
+By.Id("identifierId")
+By.Id("i0116")
+By.Id("idBtn_Back")
+By.Id("identifierId")
+
+By.LinkText("Sign in")
+
+By.CssSelector("input[name='subjectbox']")
+By.CssSelector("div[class='T-I J-J5-Ji aoO v7 T-I-atl L3']")
+By.CssSelector("svg[class='Xy']")
+
+By.XPath("//button[text()='See all settings']")
+By.XPath("//span[text()='Check Inbox']")
+
+By.XPath("//*[@id='passwordNext']/descendant::span[text()='Next']")
+By.XPath("//*[@id='identifierNext']/descendant::span[text()='Next']")
+
+By.XPath($"//span[contains(text(), '{subjectOfEmail}')]")

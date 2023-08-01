@@ -1,0 +1,23 @@
+bbc.com locators
+
+Search field
+//span[text()="Search BBC"]
+By.LinkText("https://www.bbc.co.uk/search?d=SPORT_GNL")
+
+Home button
+id("homepage-link")
+By.LinkText("https://www.bbc.com")
+
+Sport button
+By.LinkText("https://www.bbc.com/sport")
+or
+By.ClassName("class="orb-nav-sport"")
+
+Sport navigation
+//*[@data-stat-title="Cycling"]/ancestor::*[@class="sp-c-sport-navigation sp-c-sport-navigation--primary qa-primary"]
+
+Cycling section
+//div[@id="product-navigation-menu"]/descendant::span[text()="Cycling"]
+//*[@class="sp-c-sport-navigation sp-c-sport-navigation--primary qa-primary"]/descendant::*[@data-stat-title="Cycling"]
+
+
