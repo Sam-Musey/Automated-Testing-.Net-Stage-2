@@ -18,29 +18,27 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         }
 
         // --- FRAMES --- //
-        public IWebDriver Frame1 => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@src='https://cloud.google.com/frame/products/calculator/index_d6a98ba38837346d20babc06ff2153b68c2990fa24322fe52c5f83ec3a78c6a0.frame']")));
-        public IWebDriver Frame2 => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@id='myFrame']")));
+        public IWebDriver WebpageFrame => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@src='https://cloud.google.com/frame/products/calculator/index_d6a98ba38837346d20babc06ff2153b68c2990fa24322fe52c5f83ec3a78c6a0.frame']")));
+        public IWebDriver CalculatorFrame => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@id='myFrame']")));
 
         // --- CALCULATOR FORM ELEMENTS --- //
-        public IWebElement ComputeEngineButton => wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@title='Compute Engine']")));
-        public IWebElement NumberOfInstancesField => wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@ng-model='listingCtrl.computeServer.quantity']")));
+        private IWebElement ComputeEngineButton => wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//div[@title='Compute Engine']")));
+        private IWebElement NumberOfInstancesField => wait.Until(ExpectedConditions.ElementIsVisible(By.XPath("//input[@ng-model='listingCtrl.computeServer.quantity']")));
         private IWebElement SeriesField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.series']")));
-        private IWebElement SeriesN1Option => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@value='n1']")));
+        private IWebElement SeriesOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//md-option[@value='{TestDataReader.Series}']")));
         private IWebElement MachineTypeField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.instance']")));
-        private IWebElement MachineTypeN1Standard8Option => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@value='CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8']")));
+        private IWebElement MachineTypeOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//md-option[@value='{TestDataReader.MachineType}']")));
         private IWebElement AddGPUsButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//*[@id='mainForm']/descendant::div[contains(text(), 'Add GPUs')]")));
         private IWebElement GPUTypeField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.gpuType']")));
-        private IWebElement GPUTypeNVidiaTeslaV100Option => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@value='NVIDIA_TESLA_V100']")));
+        private IWebElement GPUTypeOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//md-option[@value='{TestDataReader.GPUType}']")));
         private IWebElement NumberOfGPUsField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.gpuCount']")));
-        private IWebElement NumberOfGPUs1Option => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@id='select_option_500']")));
+        private IWebElement NumberOfGPUsOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//md-option[@ng-repeat='item in listingCtrl.supportedGpuNumbers[listingCtrl.computeServer.gpuType]']/descendant::div[contains(text(), '{TestDataReader.NumberOfGPUs}')]")));
         private IWebElement LocalSSDField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.ssd']")));
-        private IWebElement LocalSSD2x375GbOption => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//div[contains(text(), '2x375 GB')]")));
+        private IWebElement LocalSSDOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//div[contains(text(), '{TestDataReader.LocalSSD}')]")));
         private IWebElement DatacenterLocationField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.location']")));
-        private IWebElement DatacenterLocationFrankfurtOption => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@id='select_option_256']")));
-        private IWebElement DatacenterLocationSearch => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//input[@ng-model='listingCtrl.inputRegionText.computeServer']")));
-        private IWebElement DatacenterLocationMelbourneOption => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@id='select_option_250']")));
+        private IWebElement DatacenterLocationOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"//md-option[@ng-repeat='item in listingCtrl.fullRegionList | filter:listingCtrl.inputRegionText.computeServer']/*[contains(text(), '{TestDataReader.DatacenterLocation}')]")));
         private IWebElement CommittedUsageField => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-select[@ng-model='listingCtrl.computeServer.cud']")));
-        private IWebElement CommittedUsage1YearOption => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//md-option[@id='select_option_136']")));
+        private IWebElement CommittedUsageOptions => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath($"(//md-option/div[contains(text(), '{TestDataReader.CommittedUsage}')])[2]")));
 
         // --- SEND ESTIMATE ELEMENTS --- //
         private IWebElement AddToEstimateButton => wait.Until(ExpectedConditions.ElementToBeClickable(By.XPath("//button[contains(text(), 'Add to Estimate')]")));
@@ -52,25 +50,24 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         public void FillInFormWithDefinedOptions()
         {
             NumberOfInstancesField.Click();
-            NumberOfInstancesField.SendKeys("4");
+            NumberOfInstancesField.SendKeys(TestDataReader.NumberOfInstances);
             SeriesField.Click();
-            SeriesN1Option.Click();
+            SeriesOptions.Click();
             MachineTypeField.Click();
-            MachineTypeN1Standard8Option.Click();
+            MachineTypeOptions.Click();
             AddGPUsButton.Click();
             GPUTypeField.Click();
-            GPUTypeNVidiaTeslaV100Option.Click();
+            GPUTypeOptions.Click();
             NumberOfGPUsField.Click();
-            NumberOfGPUs1Option.Click();
+            NumberOfGPUsOptions.Click();
             LocalSSDField.Click();
-            LocalSSD2x375GbOption.Click();
+            LocalSSDOptions.Click();
             DatacenterLocationField.Click();
-            //DatacenterLocationFrankfurtOption.Click(); //NVIDIA TESLA V100 is not available for Frankfurt
-            DatacenterLocationMelbourneOption.Click();
+            DatacenterLocationOptions.Click();
             CommittedUsageField.Click();
-            CommittedUsage1YearOption.Click();
+            CommittedUsageOptions.Click();
             AddToEstimateButton.Click();
-            Logger.logger.Information("The form was filled in");
+            Logger.logger.Information($"The form was filled in with the data from '{TestDataReader.testScenarioName}'");
         }
 
         public void SendTotalEstimateCostToEmail(string receiverEmailAddress)
@@ -96,8 +93,8 @@ namespace GoogleCloudPricingCalculatorTest.Pages
 
         public void GoToFrameOfCalculator()
         {
-            Frame1.SwitchTo();
-            Frame2.SwitchTo();
+            WebpageFrame.SwitchTo();
+            CalculatorFrame.SwitchTo();
         }
     }
 }

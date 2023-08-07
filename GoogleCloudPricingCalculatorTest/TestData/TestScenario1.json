@@ -1,0 +1,11 @@
+﻿{
+    "NumberOfInstances": "4",
+    "Series": "n1",
+    "MachineType": "CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-8",
+    "GPUType": "NVIDIA_TESLA_V100",
+    "NumberOfGPUs": "1",
+    "LocalSSD": "2x375 GB",
+    "DatacenterLocation": "Melbourne",
+    "CommittedUsage": "1 Year"
+}
+

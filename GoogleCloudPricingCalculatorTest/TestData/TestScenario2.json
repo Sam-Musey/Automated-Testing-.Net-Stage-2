@@ -1,0 +1,11 @@
+﻿{
+    "NumberOfInstances": "3",
+    "Series": "n1",
+    "MachineType": "CP-COMPUTEENGINE-VMIMAGE-N1-STANDARD-96",
+    "GPUType": "NVIDIA_TESLA_T4",
+    "NumberOfGPUs": "4",
+    "LocalSSD": "5x375 GB",
+    "DatacenterLocation": "London",
+    "CommittedUsage": "3 Year"
+}
+

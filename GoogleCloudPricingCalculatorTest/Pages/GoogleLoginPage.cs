@@ -19,7 +19,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         }
 
         // --- FRAMES --- //
-        public IWebDriver Frame1 => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@name='account']")));
+        public IWebDriver GmailAccountInfoFrame => wait.Until(ExpectedConditions.FrameToBeAvailableAndSwitchToIt(By.XPath("//iframe[@name='account']")));
 
         // --- LOGIN WEBPAGE ELEMENTS --- //
         private IWebElement EmailInput => wait.Until(ExpectedConditions.ElementIsVisible(By.Id("identifierId")));
@@ -43,7 +43,7 @@ namespace GoogleCloudPricingCalculatorTest.Pages
         public string GetLoggedInUserName()
         {
             AccountIconButton.Click();
-            Frame1.SwitchTo();
+            GmailAccountInfoFrame.SwitchTo();
             return LoggedInUserName.Text.ToLower();
         }
 

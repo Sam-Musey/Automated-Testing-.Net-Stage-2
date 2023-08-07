@@ -18,8 +18,11 @@ public class GoogleCloudPricingTest : BaseTest
     /// </summary>
     [TestMethod]
     [TestCategory("GooglePricingTest")]
-    public void GenerateAndSendNewOfferCheckInboxAndVerifyTotalCost()
+    public void GenerateAndSendNewOfferCheckInboxAndVerifyTotalCostTest()
     {
+        string testScenario = Environment.GetEnvironmentVariable("TestScenario");
+        TestDataReader.SetTestScenario(testScenario);
+
         GoogleCloudPage googleCloudPage = new GoogleCloudPage(driver);
         googleCloudPage.OpenPage();
         googleCloudPage.SearchOnGoogleCloudPage("Google Cloud Pricing Calculator");

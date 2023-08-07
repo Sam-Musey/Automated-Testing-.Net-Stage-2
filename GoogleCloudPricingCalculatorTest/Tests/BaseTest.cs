@@ -21,6 +21,8 @@ namespace GoogleCloudPricingCalculatorTest.Tests
             {
                 Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
                 string jenkinsWorkspace = Environment.GetEnvironmentVariable("WORKSPACE");
+
+                //string screenshotFilePath = Path.Combine(Directory.GetCurrentDirectory(), "screenshots", $"{TestContext.TestName}_{DateTime.Now.ToString("ddMMyyyy_HH-mm-ss")}.png");
                 string screenshotFilePathOfJenkins = Path.Combine(jenkinsWorkspace, $"screenshots/{TestContext.TestName}_{DateTime.Now.ToString("ddMMyyyy_HH-mm-ss")}.png");
                 string screenshotFolder = Path.Combine(Directory.GetCurrentDirectory(), "screenshots");
 
@@ -29,6 +31,7 @@ namespace GoogleCloudPricingCalculatorTest.Tests
                     Directory.CreateDirectory(screenshotFolder);
                 }
                 screenshot.SaveAsFile(screenshotFilePathOfJenkins, ScreenshotImageFormat.Png);
+                //screenshot.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
             }
             WebDriverInstance.CloseDriver();
         }
